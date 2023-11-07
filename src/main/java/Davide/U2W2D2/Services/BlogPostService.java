@@ -2,6 +2,7 @@ package Davide.U2W2D2.Services;
 
 import Davide.U2W2D2.entities.BlogPost;
 import Davide.U2W2D2.entities.Categoria;
+import Davide.U2W2D2.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,5 +18,21 @@ public class BlogPostService {
         body.setId(random.nextInt(1, 1000));
         this.blogPosts.add(body);
         return body.getId();
+    }
+    public List<BlogPost> getAllBlogPost(){
+        return blogPosts;
+    }
+    public BlogPost getSingleBlogPost(long id){
+        BlogPost found = null;
+        for (BlogPost blogpost: this.blogPosts) {
+            if (blogpost.getId() == id){
+                 found = blogpost;
+            }
+        }
+        if (found != null) {
+            return found;
+        }else {
+            throw new NotFoundException(id);
+        }
     }
 }
