@@ -30,4 +30,9 @@ public class BlogPostController {
     public BlogPost findBlogPostByIdAndUpdate(@PathVariable long id, @RequestBody BlogPost body){
        return blogPostService.updateABlogPost(id, body);
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void findBlogPostByIdAndDelete(@PathVariable long id){
+        blogPostService.deleteABlogPost(id);
+    }
 }

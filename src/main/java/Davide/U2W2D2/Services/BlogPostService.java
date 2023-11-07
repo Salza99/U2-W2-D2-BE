@@ -53,4 +53,17 @@ public class BlogPostService {
             return found;
         }
     }
+    public void deleteABlogPost(long id) {
+        BlogPost found = null;
+        for (BlogPost blogpost: this.blogPosts) {
+            if (blogpost.getId() == id){
+                found = blogpost;
+            }
+        }
+        if (found == null) {
+            throw new NotFoundException(id);
+        }else {
+            this.blogPosts.remove(found);
+        }
+    }
 }
