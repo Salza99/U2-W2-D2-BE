@@ -27,4 +27,13 @@ public class AutoreController {
     public Autore findAutoreById(@PathVariable long id){
         return autoreService.getSingleAutore(id);
     }
+    @PutMapping("/{id}")
+    public Autore findAutoreByIdAndUpdate(@PathVariable long id, @RequestBody Autore body){
+        return autoreService.updateAnAutore(id, body);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void findAutoreByIdAndDelete(@PathVariable long id){
+        autoreService.deleteAnAutore(id);
+    }
 }

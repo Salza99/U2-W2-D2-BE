@@ -38,4 +38,17 @@ public class AutoreService {
             throw new NotFoundException(id);
         }
     }
+    public Autore updateAnAutore(long id, Autore body){
+        Autore updatedAutore= this.getSingleAutore(id);
+        updatedAutore.setNome(body.getNome());
+        updatedAutore.setCognome(body.getCognome());
+        updatedAutore.setEmail(body.getEmail());
+        updatedAutore.setDataDiNascita(body.getDataDiNascita());
+        updatedAutore.setAvatar("https://ui-avatars.com/api/?name=" + body.getNome() + "+" + body.getCognome());
+        return updatedAutore;
+    }
+    public void deleteAnAutore(long id){
+        Autore toRemove = this.getSingleAutore(id);
+        this.autori.remove(toRemove);
+    }
 }
