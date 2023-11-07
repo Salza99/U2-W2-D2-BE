@@ -35,4 +35,22 @@ public class BlogPostService {
             throw new NotFoundException(id);
         }
     }
+    public BlogPost updateABlogPost(long id, BlogPost body){
+        BlogPost found = null;
+        for (BlogPost blogpost: this.blogPosts) {
+            if (blogpost.getId() == id){
+                found = blogpost;
+                found.setCategoria(body.getCategoria());
+                found.setContenuto(body.getContenuto());
+                found.setTitolo(body.getTitolo());
+                found.setCover(body.getCover());
+                found.setTempoDiLettura(body.getTempoDiLettura());
+            }
+        }
+        if (found == null) {
+            throw new NotFoundException(id);
+        }else {
+            return found;
+        }
+    }
 }

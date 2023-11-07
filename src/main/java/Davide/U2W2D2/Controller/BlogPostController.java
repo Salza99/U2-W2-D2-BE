@@ -26,4 +26,8 @@ public class BlogPostController {
     public BlogPost findBlogPostById(@PathVariable long id){
         return blogPostService.getSingleBlogPost(id);
     }
+    @PutMapping("/{id}")
+    public BlogPost findBlogPostByIdAndUpdate(@PathVariable long id, @RequestBody BlogPost body){
+       return blogPostService.updateABlogPost(id, body);
+    }
 }
