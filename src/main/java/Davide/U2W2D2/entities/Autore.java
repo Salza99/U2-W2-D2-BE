@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +17,12 @@ public class Autore {
     private String email;
     private LocalDate dataDiNascita;
     private String avatar;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autore autore = (Autore) o;
+        return getId() == autore.getId();
+    }
 }

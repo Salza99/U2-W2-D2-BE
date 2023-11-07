@@ -1,0 +1,41 @@
+package Davide.U2W2D2.Services;
+
+import Davide.U2W2D2.entities.Autore;
+import Davide.U2W2D2.entities.BlogPost;
+import Davide.U2W2D2.exceptions.NotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+@Service
+public class AutoreService {
+    private List<Autore> autori= new ArrayList<>();
+
+    public long save(Autore body){
+        Random random = new Random();
+        body.setId(random.nextInt(1001, 2000));
+        body.setAvatar("https://ui-avatars.com/api/?name=" + body.getNome() + "+" + body.getCognome());
+        this.autori.add(body);
+        return body.getId();
+    }
+
+    public List<Autore> getAll(){
+        return this.autori;
+    }
+    public Autore getSingleAutore(long id){
+        Autore found = null;
+        for (Autore autore: this.autori) {
+            if (autore.getId() == id){
+                found = autore;
+            }
+        }
+        if (found != null) {
+            return found;
+        }else {
+            throw new NotFoundException(id);
+        }
+    }
+}
